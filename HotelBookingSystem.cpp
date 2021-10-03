@@ -19,7 +19,7 @@ int generateNo();
 void Order();
 void displayData();
 void adminPanel();
-
+bool cariData(int bookID);
 
 
 int main() {
@@ -343,3 +343,30 @@ void adminPanel() {
 		cout << "Kode akses salah!";
 	}
 }
+
+
+bool cariData(int bookID) {
+
+	ifstream readData;
+	dataBase db;
+	bool cek = 0;
+
+	readData.open("database.dat", ios::binary);
+
+	while (readData.read((char*)&db, sizeof(db)))
+	{
+		if (db.InvoiceNO == bookID)
+		{
+			cout << endl;
+			cout << (char)201 << "========================================HOTEL MELATI============================================" << (char)187 << endl;
+			cout << " kode booking\tnama\t\t\tnomor\t\tCheckIn\t\tCheckOut\tTotal" << endl;
+			cout << ' ' << db.InvoiceNO << "\t\t" << db.nama << "\t\t" << db.nomor << "\t" << db.ci << "\t" << db.co << "\t" << db.hargaAkhir << endl;
+			cout << (char)200 << "================================================================================================" << (char)188 << endl;
+			cek = 1;
+		}
+
+	}
+	readData.close();
+	return cek;
+}
+
