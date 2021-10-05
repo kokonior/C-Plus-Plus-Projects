@@ -1,0 +1,86 @@
+#include <iostream>
+#include <stack>
+using namespace std;
+
+bool Cprec(char c){
+  if(c == '+' || c == '-' || c == '*' || c == '/'){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+
+int prec(char c){
+  if(c == '*' || c == '/')
+  return 2;
+  else if(c == '+' || c == '-')
+  return 1;
+  else
+  return -1;
+}
+
+
+string Infix2Suffix(stack<char> s,string infix) {
+  	string postfix;
+    for(int i=0;i<infix.length();i++){
+      if((infix[i] >= 'a' && infix [i] <= 'z') ||
+      (infix[i] >= 'A' && infix [i] <= 'Z' ) ||
+      (infix[i] >= '0' && infix [i] <= '9')){
+        postfix += infix[i];
+      }
+      else if(infix[i] == '('){
+        s.push(infix[i]);
+      }
+      else if(infix[i] == ')'){
+        while((s.top()!='(') && (!s.empty())){
+          char temp = s.top();
+          postfix += temp;
+          s.pop();
+        }
+      }
+      else if(Cprec(infix[i])){
+        if(s.empty()){
+          s.push(infix[i]);
+        }
+        else{
+          if(prec(infix[i])>prec(s.top())){
+            s.push(infix[i]);
+          }
+          else{
+            while((!s.empty()) && (prec(infix[i])<=prec(s.top()))){
+              char temp = s.top();
+              postfix += temp;
+              s.pop();
+            }
+            s.push(infix[i]);
+          }
+        }
+      }
+    }
+    while(!s.empty()){
+      postfix += s.top();
+      s.pop();
+    }
+
+
+    return postfix;
+}
+
+
+
+int main() {
+  char ans[2];
+  string exp, postfix;
+  do{
+    cout << "Put the infix expression: " << endl;
+    getline (cin,exp);
+    stack<char> stack;
+    postfix = Infix2Suffix(stack, exp);
+    cout << "The postfix expression: " << postfix << endl;
+    cout << "Take another data? (Y/N) ";
+    cin >> ans;
+    cin.ignore();
+  }while(ans[0] == 'Y' || ans[0] == 'y');
+  return 0;
+}
