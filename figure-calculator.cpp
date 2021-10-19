@@ -22,6 +22,17 @@ int main(){
     float circumference = 2*pi*r;
 
     cout << "\n=== Result ===\n area : " << area << "\n circumference : " << circumference << endl;
+
+  } else if(opt == 2){
+    float s;
+
+    cout << "\n=== SQUARE ===\n side : ";
+    cin >> s;
+
+    float area = s*s;
+    float circumference = 4*s;
+
+    cout << "\n=== Result ===\n area : " << area << "\n circumference : " << circumference << endl;
   }
 
   return 0;
