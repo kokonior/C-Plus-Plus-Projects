@@ -1,43 +1,28 @@
-#include <iostream>
-#include <conio.h>
-
+#include<iostream>
 using namespace std;
 
-int main()
-{
-    int array[9] = {3, 10, 12, 21, 35, 56, 66, 77, 90};
-    int awal, tengah, akhir, angka;
-    cout << "Input number: ";
-    cin >> angka;
-
-    // Initialize first and last variables.
-    awal = 0;
-    akhir = 9;
-    while (awal <= akhir)
-    {
-        
-        tengah = (awal + akhir) / 2;
-
-        if (angka > array[tengah])
-        {
-            awal = tengah + 1;
-        }
-        else if (angka < array[tengah])
-        {
-            akhir = tengah - 1;
-        }
-        else
-        {
-            awal = akhir + 1;
-        }
-    }
-    if (angka == array[tengah])
-    {
-        cout << "Data found on index: " << tengah << endl;
-    }
-    else
-    {
-        cout << "Target not found." << endl;
-    }
-    getch();
-}
+int main ()  
+{  
+    int a[10] = {10, 23, 40, 1, 2, 0, 14, 13, 50, 9};  
+    int item,flag=0;  
+    cout<<"Enteritem which need to be searched"<<endl;
+    cin>>item;  
+    for (int i = 0; i< 10; i++)  
+    {  
+        if(a[i] == item)   
+        {  
+            flag = i+1;  
+            break;  
+        }   
+        else   
+        flag = 0;  
+    }   
+    if(flag != 0)  
+    {  
+        cout<<"Item found at location "<<flag;  
+    }  
+    else  
+    {  
+        cout<<"Item not found";   
+    }  
+}   
