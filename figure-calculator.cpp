@@ -33,6 +33,18 @@ int main(){
     float circumference = 4*s;
 
     cout << "\n=== Result ===\n area : " << area << "\n circumference : " << circumference << endl;
+
+  } else if(opt == 3){
+    float b,h;
+
+    cout << "\n=== TRIANGLE ===\n base : ";
+    cin >> b;
+    cout << " height : ";
+    cin >> h;
+
+    float area = (b*h)/2;
+
+    cout << "\n=== Result ===\n area : " << area << endl;
   }
 
   return 0;
