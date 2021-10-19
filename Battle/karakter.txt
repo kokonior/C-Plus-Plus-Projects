@@ -1,0 +1,12 @@
+io Training 10
+167.71 31.5 10 5.202
+
+NATURO Training 1
+100 30 10 5
+
+ajiz Training 1
+100 30 10 5
+
+aziz Training 1
+100 30 10 5
+

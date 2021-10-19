@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1512983864 source:e:\a\battle\main.cpp
+	<iostream>
+	"upgrader.h"
+
+1512983864 e:\a\battle\upgrader.h
+	"karakter.h"
+
+1512985795 e:\a\battle\karakter.h
+
+1512985233 source:e:\a\battle\karakter.cpp
+	<iostream>
+	<fstream>
+	"karakter.h"
+
+1512983864 source:e:\a\battle\upgrader.cpp
+	<iostream>
+	"upgrader.h"
+	"karakter.h"
+
+1512985864 source:c:\users\achmad khodzim\desktop\c++\battle\karakter.cpp
+	<iostream>
+	<fstream>
+	"karakter.h"
+
+1512985795 c:\users\achmad khodzim\desktop\c++\battle\karakter.h
+
+1512983864 source:c:\users\achmad khodzim\desktop\c++\battle\main.cpp
+	<iostream>
+	"upgrader.h"
+
+1512983864 c:\users\achmad khodzim\desktop\c++\battle\upgrader.h
+	"karakter.h"
+
+1512985864 source:c:\users\achmad khodzim\desktop\c++\battle\upgrader.cpp
+	<iostream>
+	"upgrader.h"
+	"karakter.h"
+
