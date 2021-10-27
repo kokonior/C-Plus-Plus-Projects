@@ -9,6 +9,7 @@
 #define ll long long
 #define pb push_back
 /*
+https://raw.githubusercontent.com/raisilhamn/competitive-programming/master/gemastik%202021/prob-%5BA%5D%20Undian%20Berhadiah.pdf
 AC
 score : 317 
 */
