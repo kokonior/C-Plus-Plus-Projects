@@ -1,0 +1,34 @@
+#include "CTBot.h"
+CTBot myBot; 
+
+String ssid  = "your ssid wifi"; 
+String pass  = "your pass wifi"; 
+String token = "your api token bot telegram here"; 
+
+void setup() {
+
+	Serial.begin(115200);
+	Serial.println("Starting TelegramBot...");
+
+	myBot.wifiConnect(ssid, pass);
+	myBot.setTelegramToken(token);
+	
+	// check if all things are ok
+	if (myBot.testConnection())
+		Serial.println("\ntestConnection OK");
+	else
+		Serial.println("\ntestConnection NOK");
+}
+
+void loop() {
+	// a variable to store telegram message data
+	TBMessage msg;
+
+	// if there is an incoming message...
+	if (CTBotMessageText == myBot.getNewMessage(msg))
+		// ...forward it to the sender
+		myBot.sendMessage(msg.sender.id, msg.text);
+	 
+	// wait 500 milliseconds
+	delay(500);
+}
