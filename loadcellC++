@@ -1,0 +1,91 @@
+#include "CTBot.h"
+#include "HX711.h"
+
+//inisialisasi library
+CTBot myBot;
+TBMessage pesan;
+HX711 scale;
+
+ //Deklarasi SSDID,PASSWORD,TOKEN
+  String ssid     = "Keleley";
+  String pass     = "muum6366";
+  String token    = "1957446644:AAHvHXDxDJyiIDSlkV_ks9qCUP7cgbSpmr-Y";
+
+ //Deklarasi Variable
+  String namaPasien   = " Pasien 1",
+         umurPasien   = " 21",
+         ruangPasien  = " Melati 1";
+
+  int berat,
+      presentaseInfus;
+
+   float calibration_factor = 1000;
+         
+
+void setup() {
+
+  Serial.begin(9600);
+  Serial.println("\n Memulai System...");
+  scale.begin(D4,D3);
+
+  //start telegram
+  myBot.wifiConnect(ssid,pass);
+  myBot.setTelegramToken(token);
+
+  if(myBot.testConnection()){
+    Serial.println("Connected");
+  }else{
+    Serial.println("Not Connected");
+  }
+
+  //loadcell
+    Serial.println("HX711 calibration sketch");
+    Serial.println("Remove all weight from scale");
+    Serial.println("After readings begin, place known weight on scale");
+    scale.tare();
+    long zero_factor = scale.read_average();
+    Serial.print("Zero factor: ");
+    Serial.println(zero_factor);
+
+}
+
+//loadcell
+void loadcell(){
+  scale.set_scale(calibration_factor); //Adjust to this calibration factor
+  Serial.print("Reading: ");
+  berat = scale.get_units(), 1;
+  
+  if (berat < 0)
+  {
+    berat = 0.00;
+  }
+
+  Serial.print(berat);
+  Serial.print(" gram");
+  Serial.print(" Presentase: ");
+  Serial.print(presentaseInfus);
+  Serial.print(" %");
+  Serial.println();
+  delay(200);
+}
+
+//presentase infus
+void presentaseInfuss(){
+  if(berat >= 0 && berat <= 250){
+    presentaseInfus = 25;
+//    infusHabis();
+  }else if(berat >= 251 && berat <= 500){
+    presentaseInfus = 50;
+  }else if(berat >= 501 && berat <= 750){
+    presentaseInfus = 75;
+  }else if(berat >= 751 && berat <= 1500){
+    presentaseInfus = 100;
+  }
+}
+
+void loop(){
+  
+ loadcell();
+ presentaseInfuss();
+
+}
